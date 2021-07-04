@@ -6,12 +6,40 @@ import matplotlib.pyplot as plt
 import requests
 import datetime,time
 
-   
+st.set_page_config(page_title='Covid19-DashBoard', page_icon=":syringe:", layout='centered', initial_sidebar_state='auto')
 def main():
+	hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+		footer {
 	
+	visibility: hidden;
+	
+	}
+	footer:after {
+		content:"Made with ❤️ by Jeenu Chacko"; 
+		visibility: visible;
+		display: block;
+		position: relative;
+		
+		padding: 5px;
+		top: 2px;
+		color:black;
+	}
+        </style>
+        """
+	st.markdown(hide_menu_style, unsafe_allow_html=True)
 	st.sidebar.title("")
 	Host_Country =st.sidebar.selectbox('Select a State ', ('State Wise Latest Reports','Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Delhi', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep', 'Madhya Pradesh', 'Maharashtra',  'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland',  'Odisha', 'Puducherry', 'Punjab',  'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'))
 
+
+	st.sidebar.title("")
+	st.sidebar.title("")
+
+	st.sidebar.title("")
+	st.sidebar.title("")
+
+	#st.sidebar.write("made with :heart: by Jeenu Chacko")
 
 	today = time.strftime("%Y-%m-%d")
 	urlv="https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id=&district_id=&date="+today
@@ -28,7 +56,7 @@ def main():
 	
 	df1=json_normalize(r['data'] ,record_path=['regional'],meta=['day'])
 	if Host_Country=='State Wise Latest Reports':	
-		st.title("Covid-19 🦠 Dashboard India ")
+		st.title("Covid-19 🦠 Dashboard")
 		df1=df1[["loc","totalConfirmed","discharged","deaths","confirmedCasesIndian"]]
 		df2=df1[["deaths"]]
 
