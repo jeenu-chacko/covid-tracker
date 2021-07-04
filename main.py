@@ -8,7 +8,7 @@ import datetime,time
 
    
 def main():
-		   
+	
 	st.sidebar.title("")
 	Host_Country =st.sidebar.selectbox('Select a State ', ('State Wise Latest Reports','Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Delhi', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep', 'Madhya Pradesh', 'Maharashtra',  'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland',  'Odisha', 'Puducherry', 'Punjab',  'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'))
 
@@ -28,22 +28,22 @@ def main():
 	
 	df1=json_normalize(r['data'] ,record_path=['regional'],meta=['day'])
 	if Host_Country=='State Wise Latest Reports':	
-		st.title("Covid-19 Dashboard India")
+		st.title("Covid-19 🦠 Dashboard India ")
 		df1=df1[["loc","totalConfirmed","discharged","deaths","confirmedCasesIndian"]]
 		df2=df1[["deaths"]]
 
-		st.subheader("State Wise Latest Report")
+		st.subheader("State Wise Latest Report📝")
 		st.write(df1.set_index("loc").tail(35))
 		st.write(" ")
 		st.write(" ")			
-		st.subheader("Vaccination Latest Report")
+		st.subheader("Vaccination 💉 Latest Report📝")
 		dfv0=json_normalize(rv['getBeneficiariesGroupBy'])
 		dfv0=dfv0[['title','total','partial_vaccinated','totally_vaccinated']]
 		st.write(dfv0.set_index("title"))
 
 	
 	if Host_Country!='State Wise Latest Reports':
-		st.title("Covid-19 Dashboard")
+		st.title("Covid-19 🦠 Dashboard")
 
 		stateDeaths = []
 		stateDay = []
@@ -74,20 +74,21 @@ def main():
 		dfd=pd.DataFrame({"Death":stateDeath[-30:],"Date" :stateDay[-30:]})
 		
 	
-
-		st.latex("Total Confirmed: "+str(stateTotalConfirmed[-1]))
-		st.latex("Total Deaths: "+str(stateDeath[-1]))
-		st.latex("Total Discharged: "+str(stateTotalDischarged[-1]))
-		st.latex("Total Vaccinated: "+ str(tvaccinated))
-		st.latex("Partially Vaccinated: "+ str(pvaccinated))
-		st.latex("Fully Vaccinated: "+ str(fvaccinated))
+		st.write(" ")
+		st.write(" ")
+		st.write("Total Confirmed: "+str(stateTotalConfirmed[-1]))
+		st.write("Total Deaths: "+str(stateDeath[-1]))
+		st.write("Total Discharged: "+str(stateTotalDischarged[-1]))
+		st.write("Total Vaccinated: "+ str(tvaccinated))
+		st.write("Partially Vaccinated: "+ str(pvaccinated))
+		st.write("Fully Vaccinated: "+ str(fvaccinated))
 
 		st.write(" ")
-		st.subheader("Total Confirmed and Total Discharged")
+		st.subheader("Total Confirmed and Total Discharged📈")
 		st.write(" ")
 		st.write(" ")
 		st.line_chart(dfs.rename(columns={'Date':'index'}).set_index('index'),width = 0,height=350)
-		st.subheader("Total Deaths")
+		st.subheader("Total Deaths📈")
 		st.write(" ")
 		st.write(" ")
 		st.line_chart(dfd.rename(columns={'Date':'index'}).set_index('index'),width = 0,height=350)
