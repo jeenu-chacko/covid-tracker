@@ -87,14 +87,13 @@ def main():
 		st.subheader("Total Confirmed and Total Discharged📈")
 		st.write(" ")
 		st.write(" ")
-		st.line_chart(dfs.rename(columns={'Date':'index'}).set_index('index'),width = 0,height=350)
+		
+		st.line_chart(dfs.rename(columns={'Date':'index'}).set_index('index'),use_container_width=False)
 		st.subheader("Total Deaths📈")
 		st.write(" ")
 		st.write(" ")
-		st.line_chart(dfd.rename(columns={'Date':'index'}).set_index('index'),width = 0,height=350)
+		st.line_chart(dfd.rename(columns={'Date':'index'}).set_index('index'),use_container_width=False)
 			
-
-		
 
 
 
