@@ -24,7 +24,7 @@ def main():
 		
 		padding: 5px;
 		top: 2px;
-		color:black;
+		
 	}
         </style>
         """
