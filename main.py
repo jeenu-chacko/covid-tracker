@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from pandas.io.json import json_normalize
 import numpy as np
-import matplotlib.pyplot as plt
+
 import requests
 import datetime,time
 
@@ -60,13 +60,17 @@ def main():
 		df1=df1[["loc","totalConfirmed","discharged","deaths","confirmedCasesIndian"]]
 		df2=df1[["deaths"]]
 
-		st.subheader("State Wise Latest Report📝")
+		st.subheader("State Wise Latest Report 📝")
+		df1=df1.rename(columns={ "totalConfirmed": "Total Confirmed","discharged": "Discharged","deaths": "Deaths","confirmedCasesIndian": "Confirmed Indians" })
 		st.write(df1.set_index("loc").tail(35))
 		st.write(" ")
+		st.write(" ")
+		st.write(" ")
 		st.write(" ")			
-		st.subheader("Vaccination 💉 Latest Report📝")
+		st.subheader("Vaccination 💉 Latest Report 📝")
 		dfv0=json_normalize(rv['getBeneficiariesGroupBy'])
 		dfv0=dfv0[['title','total','partial_vaccinated','totally_vaccinated']]
+		dfv0=dfv0.rename(columns={"total":"Total Vaccination Doses","partial_vaccinated":"Dose 1","totally_vaciinated":"Dose 2",})
 		st.write(dfv0.set_index("title"))
 
 	
